@@ -45,7 +45,6 @@
         }
         .text .content {
             position:absolute;
-            font-size: 40px;
             width: 80%;
             left:50%;
             top:50%;

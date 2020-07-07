@@ -101,7 +101,9 @@ class ConvenienceInfoController extends Controller
         });
         $grid->id('Id');
 //        $grid->user_id('用户');
-        $grid->content('内容');
+        $grid->column('content', '内容')->display(function ($content) {
+            return $content;
+        });
         $grid->pictures('图片')->gallery(['width' => 50]);
         $grid->created_at('创建时间');
         $grid->updated_at('最后修改时间');
