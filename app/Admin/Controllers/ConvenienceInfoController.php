@@ -96,7 +96,7 @@ class ConvenienceInfoController extends Controller
         $grid->actions(function ($actions) {
             $actions->disableDelete();
             $actions->disableView();
-            $actions->disableEdit();
+//            $actions->disableEdit();
             $actions->append('<a target="_blank" class="btn btn-default btn-xs" href="' . admin_url('convenience_posters') . '/' . $actions->getKey() . '"><i class="fa fa-image"></i>生成图片&nbsp;</a>');
         });
         $grid->id('Id');
@@ -139,7 +139,7 @@ class ConvenienceInfoController extends Controller
         $form = new Form(new ConvenienceInfo);
         $form->hidden('user_id', '用户')->value(Admin::user()->id);
         $form->select('convenience_category_id', '分类')->options(ConvenienceCategory::all()->pluck('name', 'id'));
-        $form->textarea('content', '内容');
+        $form->UEditor('content', '内容');
         $form->multipleImage('pictures', '图片')->uniqueName()->help('可选');
 
         return $form;

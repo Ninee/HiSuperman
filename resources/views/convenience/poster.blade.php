@@ -59,7 +59,7 @@
     <div id="cBox">
         <div class="text">
             <img class="bg" src="/images/poster_bg.jpeg" alt="">
-            <p class="content">{{ $info->content }}</p>
+            <div class="content">{!! $info->content !!} </div>
         </div>
         @if($info->pictures)
             @foreach($info->pictures as $picture)
