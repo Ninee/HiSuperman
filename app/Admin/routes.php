@@ -9,6 +9,7 @@ Route::group([
     'namespace'     => config('admin.route.namespace'),
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
+    $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('convenience_categories', 'ConvenienceCategoryController');
     $router->resource('convenience_info', 'ConvenienceInfoController');
     $router->get('convenience_posters/{info_id}', 'PosterController@convenienceInfo');
