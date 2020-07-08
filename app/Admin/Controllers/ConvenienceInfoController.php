@@ -140,8 +140,8 @@ class ConvenienceInfoController extends Controller
     {
         $form = new Form(new ConvenienceInfo);
         $form->hidden('user_id', '用户')->value(Admin::user()->id);
-        $form->select('convenience_category_id', '分类')->options(ConvenienceCategory::all()->pluck('name', 'id'));
-        $form->UEditor('content', '内容');
+        $form->select('convenience_category_id', '分类')->options(ConvenienceCategory::all()->pluck('name', 'id'))->required();
+        $form->UEditor('content', '内容')->required();
         $form->multipleImage('pictures', '图片')->uniqueName()->help('可选');
 
         return $form;

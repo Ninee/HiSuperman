@@ -114,7 +114,7 @@ class ConvenienceCategoryController extends Controller
     {
         $form = new Form(new ConvenienceCategory);
 
-        $form->text('name', '分类名称');
+        $form->text('name', '分类名称')->required();
 
         return $form;
     }
