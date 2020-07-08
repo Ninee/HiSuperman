@@ -73,33 +73,36 @@
 //    var text = $('.content').html();
 //    var fontSize = 600 / text.length * 10;
 //    $('.content').css('font-size', fontSize + 'px');
-    var box = document.getElementById("box");
-    var el = document.getElementById("cBox");
-    var saveImg = document.getElementById("saveImg");
-    var canvas = document.createElement("canvas");
-    var scale = window.devicePixelRatio;
-    var ctx=canvas.getContext("2d");
-    var rect = el.getBoundingClientRect();  //获取元素相对于视察的偏移量
-    var w = el.offsetWidth;
-    var h = el.offsetHeight;
-    canvas.width = w * scale;
-    canvas.height = h * scale;
-    canvas.style.width = w ;
-    canvas.style.height = h ;
-    ctx.scale(scale, scale);
-    ctx.translate(-rect.left,-rect.top);    //设置context位置，值为相对于视窗的偏移量负值，让图片复位
-    html2canvas(el, {
-        scale: scale,
-        canvas: canvas,
-        width: w,
-        height: h,
-        logging: false,
-        background: "#f2f2f2",
-        useCORS: true
-    }).then(function (canvas) {
-        var dataUrl = canvas.toDataURL("jpeg");
-        saveImg.src=dataUrl;
+    $(function () {
+        var box = document.getElementById("box");
+        var el = document.getElementById("cBox");
+        var saveImg = document.getElementById("saveImg");
+        var canvas = document.createElement("canvas");
+        var scale = window.devicePixelRatio;
+        var ctx=canvas.getContext("2d");
+        var rect = el.getBoundingClientRect();  //获取元素相对于视察的偏移量
+        var w = el.offsetWidth;
+        var h = el.offsetHeight;
+        canvas.width = w * scale;
+        canvas.height = h * scale;
+        canvas.style.width = w ;
+        canvas.style.height = h ;
+        ctx.scale(scale, scale);
+        ctx.translate(-rect.left,-rect.top);    //设置context位置，值为相对于视窗的偏移量负值，让图片复位
+        html2canvas(el, {
+            scale: scale,
+            canvas: canvas,
+            width: w,
+            height: h,
+            logging: false,
+            background: "#f2f2f2",
+            useCORS: true
+        }).then(function (canvas) {
+            var dataUrl = canvas.toDataURL("jpeg");
+            saveImg.src=dataUrl;
+        });
     });
+
 </script>
 </body>
 </html>
