@@ -106,6 +106,8 @@ class ConvenienceInfoController extends Controller
             return strip_tags($content);
         });
         $grid->pictures('图片')->gallery(['width' => 50]);
+        $grid->copyer('复制次数');
+        $grid->sharer('分享次数');
         $grid->created_at('创建时间');
         $grid->updated_at('最后修改时间');
 
@@ -142,7 +144,7 @@ class ConvenienceInfoController extends Controller
         $form = new Form(new ConvenienceInfo);
         $form->hidden('user_id', '用户')->value(Admin::user()->id);
         $form->select('convenience_category_id', '分类')->options(ConvenienceCategory::all()->pluck('name', 'id'))->required();
-        $form->UEditor('content', '内容')->required();
+        $form->textarea('content', '内容')->required();
         $form->multipleImage('pictures', '图片')->uniqueName()->help('可选');
 
         return $form;

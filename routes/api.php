@@ -14,7 +14,8 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['namespace' => 'Api'], function () {
-   Route::get('/rank', 'RankController@index');
-   Route::get('/total', 'RankController@total');
-   Route::get('/convenience', 'ConvenienceController@index');
+    Route::get('/rank', 'RankController@index');
+    Route::get('/total', 'RankController@total');
+    Route::get('/convenience', 'ConvenienceController@index');
+    Route::post('/statistic', 'StatisticController@store');
 });

@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class City extends Model
 {
-    //
+
+    public function viewerInc()
+    {
+        $this->viewer += 1;
+        $this->save();
+    }
 }

@@ -85,3 +85,4 @@ function getquery(name)
         div.innerHTML='<p style="text-align:center; margin-top:20%;padding:0 5%;"><img style="max-width:100%;" src="'+url+'" alt="请您关注后浏览"></p><p style="text-align:center;line-height:20px; color:#fff;margin:0px;padding:0px;">长按二维码选择识别二维码,关注本公众号</p>';
         document.body.appendChild(div);
     }
+function nl2br(content){return content.replace(/\n/g, "<br />");}

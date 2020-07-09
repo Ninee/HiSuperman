@@ -160,10 +160,6 @@
             </div>
             <a id="search" href="javascript:;" class="weui-btn bg-blue"><i class="icon icon-4"></i>搜索</a>
         </div>
-        <!-- <h1 class="page-hd-title">
-            工厂信息列表
-        </h1>
-        <p class="page-hd-desc">xxx工厂</p> -->
     </div>
     <div class="page-bd">
         <div class="weui-cells__title">信息列表</div>
@@ -238,7 +234,7 @@
                 </div>
             </div>
             <div class="content copy<%=list[i].id%>">
-                <%=list[i].content%> （联系时请告知超人推荐哦）
+                <%=nl2br(list[i].content)%>（联系时请告知超人推荐哦）
             </div>
             <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files" id="uploaderFiles">
@@ -249,7 +245,7 @@
             </div>
             <div class="tools">
                 <div class="btn copy-btn" data-id="<%=list[i].id%>"><i class="icon icon-97"></i>复制问超人</div>
-                <div class="btn share-btn" data-id="<%=list[i].id%>" onclick="share()"><i class="icon icon-3"></i>分享好友</div>
+                <div class="btn share-btn" data-id="<%=list[i].id%>" onclick="sharePlus(<%=list[i].id%>)"><i class="icon icon-3"></i>分享好友</div>
             </div>
         </li>
         <% } %>
@@ -314,6 +310,20 @@
                 });
         }
 
+        function sharePlus(id) {
+            share()
+            //统计复制数据
+            postStatistic({
+                url: location.href,
+                target: 'convenience_feed',
+                event: 'share',
+                data: {
+                    id: id
+                }
+            }, function (){
+            });
+        }
+
         $(window).scroll(
             function () {
                 var scrollTop = $(this).scrollTop();
@@ -328,6 +338,19 @@
             });
         ajaxpage();
         $(function () {
+            //统计浏览数据
+            postStatistic({
+                url: location.href,
+                target: 'convenience',
+                event: 'view',
+                data: {
+                    city: city,
+                    category: category
+                }
+            }, function (){
+
+            });
+
             $("#search").click(function () {
                 updateShareInfo()
                 //重置页码
@@ -338,7 +361,16 @@
                 text: function(trigger) {
                     console.log($(trigger).data('id'));
                     var id = $(trigger).data('id');
-
+                    //统计复制数据
+                    postStatistic({
+                        url: location.href,
+                        target: 'convenience_feed',
+                        event: 'copy',
+                        data: {
+                            id: id
+                        }
+                    }, function (){
+                    });
                     return $('.copy' + id).html().replace(/<[^>]+>/g,"").replace(/&nbsp;/ig,'');
                 }
             });

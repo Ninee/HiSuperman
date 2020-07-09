@@ -6,7 +6,8 @@ var host = '';
 
 var urls = {
     //获取工厂数据列表
-    'list': '/api/convenience'
+    'list': '/api/convenience',
+    'statistic': '/api/statistic'
 };
 
 // ajax封装
@@ -64,7 +65,7 @@ function request(url, type, data, success, error, async, dataType, cache, alone)
     // }
     $.ajax({
         'url': host + url,
-        'data': data,
+        'data': type == 'post' ? JSON.stringify(data) : data,
         'type': type,
         // 'headers': {'Authorization': jwt.token_type + ' ' + jwt.access_token},
         'contentType': "application/json",
@@ -84,4 +85,13 @@ function request(url, type, data, success, error, async, dataType, cache, alone)
 
 function getList(data, success) {
     return request(urls['list'], 'get', data, success)
+}
+
+function postStatistic(data, success) {
+    var ua = navigator.userAgent;
+    var defaults = {
+        ua: ua
+    };
+    data = $.extend({}, defaults, data);
+    return request(urls['statistic'], 'post', data, success)
 }

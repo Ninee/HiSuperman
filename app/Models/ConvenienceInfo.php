@@ -29,4 +29,20 @@ class ConvenienceInfo extends Model
         }
         return $pictures ? $tmp : $pictures;
     }
+
+//    public function getContentAttribute($content) {
+//        return nl2br($content);
+//    }
+
+    public function copyerInc()
+    {
+        $this->copyer += 1;
+        $this->save();
+    }
+
+    public function sharerInc()
+    {
+        $this->sharer += 1;
+        $this->save();
+    }
 }
