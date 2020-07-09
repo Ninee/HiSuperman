@@ -62,10 +62,10 @@ return [
         ],
         'qiniu' => [
             'driver'     => 'qiniu',
-            'access_key' => env('QINIU_ACCESS_KEY', 'xxxxxxxxxxxxxxxx'),
-            'secret_key' => env('QINIU_SECRET_KEY', 'xxxxxxxxxxxxxxxx'),
-            'bucket'     => env('QINIU_BUCKET', 'test'),
-            'domain'     => env('QINIU_DOMAIN', 'xxx.clouddn.com'), // or host: https://xxxx.clouddn.com
+            'access_key' => env('QINIU_ACCESS_KEY', 'LbLaCpjnuh56wcafy4B4j4yJH2ZgvrpUtNfL0eK3'),
+            'secret_key' => env('QINIU_SECRET_KEY', 'da26akaeytKeUKtfz0HFfWdsmDNAfV-QvYUPXiL5'),
+            'bucket'     => env('QINIU_BUCKET', 'hisuper'),
+            'domain'     => env('QINIU_DOMAIN', 'supercdn.lzhnb.com'), // or host: https://xxxx.clouddn.com
         ],
         's3' => [
             'driver' => 's3',
