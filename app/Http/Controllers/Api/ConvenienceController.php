@@ -15,7 +15,7 @@ class ConvenienceController extends Controller
         $admin = AdminUser::where(['name' => $request->city])->first();
         $category = ConvenienceCategory::where(['name' => $request->category])->first();
         $list = ConvenienceInfo::where(['user_id' => $admin->id, 'convenience_category_id' => $category->id])
-            ->orderByDesc('created_at')
+            ->orderByDesc('created_at')->with('user')
             ->paginate($request->input('page_size', 10));
         return response()->json($list);
     }

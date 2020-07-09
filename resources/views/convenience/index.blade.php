@@ -16,6 +16,10 @@
     <script src="/h5/js/tools.js"></script>
     <script src="/h5/js/iscroll-lite.min.js"></script>
     <script src="/h5/js/clipboard.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        wx.config(<?php echo $app->jssdk->buildConfig(array('updateAppMessageShareData', 'updateTimelineShareData'), false) ?>);
+    </script>
     <style>
         .weui-tab-nav .weui-nav-green {
             display: block;
@@ -124,6 +128,11 @@
                     {{--href="javascript:" class="weui-navbar__item weui-nav-green"> 卖场 </a> </div>--}}
         {{--</div>--}}
     {{--</div>--}}
+    <div class="weui-gallery" style="display: none">
+        <span class="weui-gallery__img"></span>
+        <div class="weui-gallery__opr">
+        </div>
+    </div>
     <div class="page-hd">
         <p class="page-hd-desc">按条件筛选：</p>
 
@@ -214,25 +223,23 @@
                     <span class="weui-icon-success weui-icon-safe-warn"></span>
                 </div>
                 <div class="desc">
-                    <p class="name">洛杉矶站</p>
+                    <p class="name"><%=list[i].user.name%>站</p>
                     <p class="time"><%=list[i].created_at%></p>
                 </div>
             </div>
             <div class="content copy<%=list[i].id%>">
                 <%=list[i].content%>
             </div>
-            <div class="weui-feeds">
-                <ul>
+            <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files" id="uploaderFiles">
                     <% for(var j in list[i].pictures) {   %>
-                        <li>
-                            <span style="background-image:url('<%=list[i].pictures[j]%>');background-repeat:no-repeat;background-size:cover;"></span>
-                        </li>
-                    <% } %>
+                    <li class="weui-uploader__file" style="background-image:url('<%=list[i].pictures[j]%>')"></li>   
+                    <% } %>                 
                 </ul>
             </div>
             <div class="tools">
                 <div class="btn copy-btn" data-id="<%=list[i].id%>"><i class="icon icon-97"></i>复制问超人</div>
-                <div class="btn share-btn" data-id="<%=list[i].id%>"><i class="icon icon-3"></i>分享好友</div>
+                <div class="btn share-btn" data-id="<%=list[i].id%>" onclick="share()"><i class="icon icon-3"></i>分享好友</div>
             </div>
         </li>
         <% } %>
@@ -303,7 +310,7 @@
                 reset()
                 ajaxpage(filter)
             })
-            var clipboard = new Clipboard('.btn', {
+            var clipboard = new Clipboard('.copy-btn', {
                 text: function(trigger) {
                     console.log($(trigger).data('id'));
                     var id = $(trigger).data('id');
@@ -326,6 +333,17 @@
                 $.toast('复制失败，请手动截图', "cancel");
             });
 
+            // var $uploaderFiles = $("#uploaderFiles");
+            var $galleryImg = $(".weui-gallery__img");//相册图片地址
+            var $gallery = $(".weui-gallery");
+            $('#factory-list').on("click", ".weui-uploader__file", function(){
+                $galleryImg.attr("style", this.getAttribute("style"));
+                console.log(this)
+                $gallery.fadeIn(100);
+            });
+            $gallery.on("click", function(){
+                $gallery.fadeOut(100);
+            });
             // $("#factory-list").on('click', '.copy-btn', function () {
                 
             //     var id = $(this).data('id')
@@ -342,6 +360,25 @@
             // })
 
         })
+        wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
+        wx.updateAppMessageShareData({
+            title: '海外超人-全球最大的华人互助社区', // 分享标题
+            desc: '快看，我发现一条超好的闲置信息...', // 分享描述
+            link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: '{{asset('images/logo.png')}}', // 分享图标
+            success: function () {
+                // 设置成功
+            }
+        });
+        wx.updateTimelineShareData({
+                title: '海外超人-全球最大的华人互助社区', // 分享标题
+                link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: '{{asset('images/logo.png')}}', // 分享图标
+                success: function () {
+                    // 用户点击了分享后执行的回调函数
+                }
+            });
+        });
     </script>
 </body>
 

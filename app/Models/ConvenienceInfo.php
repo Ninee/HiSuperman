@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\AdminUser;
 use Illuminate\Database\Eloquent\Model;
 
 class ConvenienceInfo extends Model
 {
+    public function user()
+    {
+        return $this->belongsTo(AdminUser::class, 'user_id', 'id');
+    }
     public function setPicturesAttribute($pictures)
     {
         if (is_array($pictures)) {
