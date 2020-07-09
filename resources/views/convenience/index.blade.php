@@ -367,7 +367,7 @@
         wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
         wx.updateAppMessageShareData({
             title: '海外超人-全球最大的华人互助社区', // 分享标题
-            desc: '快看！发现了{{$currentCity->name}}最新的{{$currentCategory->name}}信息！', // 分享描述
+            desc: '快看！发现了' + city + '最新的' + category + '信息！', // 分享描述
             link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: '{{asset('images/logo.png')}}', // 分享图标
             success: function () {
