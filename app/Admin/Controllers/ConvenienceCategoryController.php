@@ -80,7 +80,9 @@ class ConvenienceCategoryController extends Controller
     protected function grid()
     {
         $grid = new Grid(new ConvenienceCategory);
-
+        $grid->actions(function ($actions) {
+            $actions->disableView();
+        });
         $grid->id('Id');
         $grid->name('名称');
         $grid->created_at('创建时间');

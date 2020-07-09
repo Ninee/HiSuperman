@@ -15,3 +15,5 @@ Route::group(['prefix' => 'tools'], function () {
        return view('tools.image_generator');
     });
 });
+
+Route::get('/convenience/{city?}/{category?}', 'ConvenienceController@index');

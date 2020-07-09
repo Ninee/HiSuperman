@@ -15,6 +15,13 @@ class ConvenienceInfo extends Model
 
     public function getPicturesAttribute($pictures)
     {
-        return json_decode($pictures, true);
+        $pictures = json_decode($pictures, true);
+        $tmp = [];
+        if (is_array($pictures)) {
+            foreach ($pictures as $picture) {
+                array_push($tmp, trans_img_url($picture));
+            }
+        }
+        return $pictures ? $tmp : $pictures;
     }
 }
