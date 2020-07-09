@@ -94,7 +94,7 @@ class ConvenienceInfoController extends Controller
             $filter->date('created_at', '创建时间');
         });
         $grid->actions(function ($actions) {
-            $actions->disableDelete();
+//            $actions->disableDelete();
             $actions->disableView();
             $actions->disableEdit();
             $actions->append('<a target="_blank" class="btn btn-default btn-xs" href="' . admin_url('convenience_info') . '/' . $actions->getKey() . '/edit' . '"><i class="fa fa-edit"></i>编辑&nbsp;</a>');
