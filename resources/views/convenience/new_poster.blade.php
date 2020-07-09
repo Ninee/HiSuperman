@@ -114,7 +114,7 @@
         <div class="thin-line"></div>
         <div class="wide-line"></div>
         <div class="text">
-            <div class="content">{!! $info->content !!} </div>
+            <div class="content">{!! nl2br($info->content) !!} </div>
         </div>
         @if($info->pictures)
             @foreach($info->pictures as $picture)
