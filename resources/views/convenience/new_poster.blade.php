@@ -126,7 +126,7 @@
         <div class="footer">
             <div class="tips">
                 长按扫码<br>
-                获取更多闲置资讯
+                获取更多{{$category->name}}资讯
             </div>
             <img class="qrcode" src="data:image/png;base64,{!! $qrcode !!}" alt="">
         </div>
