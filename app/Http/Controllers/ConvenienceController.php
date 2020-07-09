@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ConvenienceController extends Controller
 {
-    public function index($city = 1, $category = 1)
+    public function index($city = 2, $category = 1)
     {
         $app = \EasyWeChat::officialAccount();
 //        $app ='';

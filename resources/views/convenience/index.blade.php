@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="/h5/css/weuix.css">
     <link rel="stylesheet" href="/h5/css/app.css">
     <!-- <script src="js/main.js"></script> -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?feebc866f5e48370dfa23b10b3543c5a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
     <script src="/h5/js/zepto.min.js"></script>
     <script src="/h5/js/zepto.weui.min.js"></script>
     <script src="/h5/js/tools.js"></script>
@@ -358,7 +367,7 @@
         wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
         wx.updateAppMessageShareData({
             title: '海外超人-全球最大的华人互助社区', // 分享标题
-            desc: '快看，我发现一条超好的闲置信息...', // 分享描述
+            desc: '快看！发现了{{$currentCity->name}}最新的{{$currentCategory->name}}信息！', // 分享描述
             link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: '{{asset('images/logo.png')}}', // 分享图标
             success: function () {
