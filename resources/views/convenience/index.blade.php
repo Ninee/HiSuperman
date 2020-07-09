@@ -172,7 +172,6 @@
         var category = '{{$currentCategory->name}}';
         $("#city").picker({
             title: "请选择您的站点",
-            inputReadOnly: false,
             cols: [
                 {
                     textAlign: 'center',
@@ -181,6 +180,7 @@
             ],
             onChange: function(p, v, dv) {
                 console.log(p, v, dv);
+                city = dv;
             },
             onClose: function(p, v, d) {
                 console.log("close");
@@ -197,6 +197,7 @@
             ],
             onChange: function(p, v, dv) {
                 console.log(p, v, dv);
+                category = dv;
             },
             onClose: function(p, v, d) {
                 console.log("close");
@@ -299,16 +300,10 @@
         ajaxpage();
         $(function () {
             $("#search").click(function () {
-                var inputs = $("input");
-                for (var index = 0; index < inputs.length; index++) {
-                    var element = inputs[index];
-                    var key = $(element).data('key')
-                    var val = $(element).val()
-                    filter[key] = val
-                }
+
                 //重置页码
                 reset()
-                ajaxpage(filter)
+                ajaxpage()
             })
             var clipboard = new Clipboard('.copy-btn', {
                 text: function(trigger) {
