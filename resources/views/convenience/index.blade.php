@@ -239,7 +239,7 @@
             <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files" id="uploaderFiles">
                     <% for(var j in list[i].pictures) {   %>
-                    <li class="weui-uploader__file" data-url="<%=list[i].pictures[j]%>" style="background-image:url('<%=list[i].pictures[j]%>')"></li>   
+                    <li class="weui-uploader__file" data-url="<%=list[i].pictures[j]%>" style="background-image:url('<%=list[i].pictures[j]%>-thumb')"></li>
                     <% } %>                 
                 </ul>
             </div>
