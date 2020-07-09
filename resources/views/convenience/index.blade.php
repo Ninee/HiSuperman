@@ -147,7 +147,7 @@
 
         <div class="weui-cells weui-cells_form">
             <div class="weui-cell">
-                <div class="weui-cell__hd"><label for="name" class="weui-label">站点</label></div>
+                <div class="weui-cell__hd"><label for="name" class="weui-label">城市</label></div>
                 <div class="weui-cell__bd">
                     <input data-key="city" class="weui-input" id="city" type="text" value="{{$currentCity->name}}">
                 </div>
@@ -180,7 +180,7 @@
         var city = '{{$currentCity->name}}';
         var category = '{{$currentCategory->name}}';
         $("#city").picker({
-            title: "请选择您的站点",
+            title: "请选择您的城市",
             cols: [
                 {
                     textAlign: 'center',
@@ -197,7 +197,7 @@
         });
 
         $("#category").picker({
-            title: "请选择您的站点",
+            title: "请选择分类",
             cols: [
                 {
                     textAlign: 'center',
@@ -238,12 +238,12 @@
                 </div>
             </div>
             <div class="content copy<%=list[i].id%>">
-                <%=list[i].content%>
+                <%=list[i].content%> （联系时请告知超人推荐哦）
             </div>
             <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files" id="uploaderFiles">
                     <% for(var j in list[i].pictures) {   %>
-                    <li class="weui-uploader__file" style="background-image:url('<%=list[i].pictures[j]%>')"></li>   
+                    <li class="weui-uploader__file" data-url="<%=list[i].pictures[j]%>" style="background-image:url('<%=list[i].pictures[j]%>')"></li>   
                     <% } %>                 
                 </ul>
             </div>
@@ -348,7 +348,7 @@
                 console.info('Text:', e.text);
                 console.info('Trigger:', e.trigger);
                 e.clearSelection();
-                $.toast('复制成功');
+                $.toast('已复制以上文本内容');
             });
 
             clipboard.on('error', function(e) {
@@ -361,27 +361,24 @@
             var $galleryImg = $(".weui-gallery__img");//相册图片地址
             var $gallery = $(".weui-gallery");
             $('#factory-list').on("click", ".weui-uploader__file", function(){
-                $galleryImg.attr("style", this.getAttribute("style"));
-                console.log(this)
-                $gallery.fadeIn(100);
+                // $galleryImg.attr("style", this.getAttribute("style"));
+                
+                var children = $(this).parent().children();
+                var pictures = []
+                for (var index = 0; index < children.length; index++) {
+                    var element = children[index];
+                    pictures.push($(element).data('url'))
+                }
+                console.log(pictures);
+                wx.previewImage({
+                    current: $(this).data('url'), // 当前显示图片的http链接
+                    urls: pictures // 需要预览的图片http链接列表
+                })
+                // $gallery.fadeIn(100);
             });
             $gallery.on("click", function(){
                 $gallery.fadeOut(100);
             });
-            // $("#factory-list").on('click', '.copy-btn', function () {
-                
-            //     var id = $(this).data('id')
-            //     var clipboard = new Clipboard('.copy'+id, {
-            //         text: 'abc'
-            //     });
-            //     clipboard.on('success', function(e) {
-            //         $.toast('复制成功');
-
-            //     });
-            //     clipboard.on('error', function(e) {
-            //         console.log(e);
-            //     });
-            // })
 
         })
 
