@@ -118,7 +118,7 @@
         </div>
         @if($info->pictures)
             @foreach($info->pictures as $picture)
-                <img class="img" src="{{ Storage::disk('admin')->url($picture) }}" alt="">
+                <img class="img" src="{{ $picture }}" alt="">
             @endforeach
         @endif
         <div class="thin-line"></div>
