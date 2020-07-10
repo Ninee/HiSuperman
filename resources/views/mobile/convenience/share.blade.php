@@ -25,25 +25,30 @@
             flex-direction: column;
             flex-wrap: nowrap;
             width: 100%;
-            height: 100%;
             background-color: rgba(0,0,0,0.5);;
         }
         .share-tips {
             border: 1px dashed white;
             width: 90%;
-            margin: 10px auto;
+            margin: 3rem auto 1rem auto ;
             text-align: center;
             color: white;
             line-height: 2rem;
         }
+        .navigator {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
         #box {
-            overflow-y: scroll;
+            /*overflow-y: scroll;*/
         }
         #cBox {
             background-color: white;
             width: 90%;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0.8rem;
         }
         .header {
             box-sizing: border-box;
@@ -113,7 +118,7 @@
         #saveImg {
             position: absolute;
             margin: 0 5%;
-            top: 5rem;
+            top: 5.8rem;
             width: 90%;
             opacity: 1;
             z-index: 9999;
@@ -124,10 +129,13 @@
 
 @section('content')
 <div class="view">
-    <div class="weui-header bg-blue navigator">
-        <div id="back-btn" class="weui-header-left"> <a class="icon icon-109 f-white">返回</a>  </div>
-        <h1 class="weui-header-title">分享</h1>
+    <div class="navigator">
+        <div class="weui-header bg-blue navigator">
+            <div id="back-btn" class="weui-header-left"> <a class="icon icon-109 f-white">返回</a>  </div>
+            <h1 class="weui-header-title">分享</h1>
+        </div>
     </div>
+
     <div class="share-tips">长按图片可发送给好友或保存图片分享朋友圈</div>
     <div id="box">
         <div id="cBox">
@@ -155,7 +163,7 @@
                 <img class="qrcode" src="data:image/png;base64,{!! $qrcode !!}" alt="">
             </div>
         </div>
-        <img id="saveImg" alt="">
+        <img id="saveImg" src="" alt="">
     </div>
 </div>
     <script type="text/javascript">
