@@ -18,3 +18,4 @@ Route::group(['prefix' => 'tools'], function () {
 
 Route::get('/convenience/{city?}/{category?}', 'ConvenienceController@index')->name('convenience.index')->where(['city' => '[0-9]+', 'category' => '[0-9]+']);
 Route::get('/convenience/share/{info_id}', 'ConvenienceController@share')->name('convenience.share');
+Route::get('/convenience/detail/{info_id}', 'ConvenienceController@detail')->name('convenience.detail');

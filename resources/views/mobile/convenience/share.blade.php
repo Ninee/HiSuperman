@@ -146,19 +146,25 @@
             <div class="thin-line"></div>
             <div class="wide-line"></div>
             <div class="text">
-                <div class="content">{!! nl2br($info->content) !!} </div>
+                <div class="content">
+                    {!! nl2br($info->content) !!}
+                </div>
             </div>
             @if($info->pictures)
-                @foreach($info->pictures as $picture)
-                    <img class="img" src="{{ $picture }}" alt="">
-                @endforeach
+                <div class="weui-uploader__bd">
+                    <ul class="weui-uploader__files" id="uploaderFiles">
+                        @foreach($info->pictures as $picture)
+                            <li class="weui-uploader__file" data-url="" style="background-image:url('{{ $picture }}-thumb')"></li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             <div class="thin-line"></div>
             <div class="wide-line"></div>
             <div class="footer">
                 <div class="tips">
                     长按扫码<br>
-                    获取更多{{$category->name}}资讯
+                    查看详情
                 </div>
                 <img class="qrcode" src="data:image/png;base64,{!! $qrcode !!}" alt="">
             </div>
@@ -166,42 +172,41 @@
         <img id="saveImg" src="" alt="">
     </div>
 </div>
-    <script type="text/javascript">
-        $(function () {
-            var box = document.getElementById("box");
-            var el = document.getElementById("cBox");
-            var saveImg = document.getElementById("saveImg");
-            var canvas = document.createElement("canvas");
+<script type="text/javascript">
+    $(function () {
+        var box = document.getElementById("box");
+        var el = document.getElementById("cBox");
+        var saveImg = document.getElementById("saveImg");
+        var canvas = document.createElement("canvas");
 //            var scale = window.devicePixelRatio;
-            var scale = 4;
-            var ctx=canvas.getContext("2d");
-            var rect = el.getBoundingClientRect();  //获取元素相对于视察的偏移量
-            var w = el.offsetWidth;
-            var h = el.offsetHeight;
-            canvas.width = w * scale;
-            canvas.height = h * scale;
-            canvas.style.width = w ;
-            canvas.style.height = h ;
-            ctx.scale(scale, scale);
-            ctx.translate(-rect.left,-rect.top);    //设置context位置，值为相对于视窗的偏移量负值，让图片复位
-            html2canvas(el, {
-                scale: scale,
-                canvas: canvas,
-                width: w,
-                height: h,
-                logging: false,
-                background: "#f2f2f2",
-                useCORS: true
-            }).then(function (canvas) {
-                var dataUrl = canvas.toDataURL("jpeg");
-                saveImg.src=dataUrl;
-            });
-
-            $('#back-btn').on('click', function () {
-                window.history.go(-1);
-            })
+        var scale = 4;
+        var ctx=canvas.getContext("2d");
+        var rect = el.getBoundingClientRect();  //获取元素相对于视察的偏移量
+        var w = el.offsetWidth;
+        var h = el.offsetHeight;
+        canvas.width = w * scale;
+        canvas.height = h * scale;
+        canvas.style.width = w ;
+        canvas.style.height = h ;
+        ctx.scale(scale, scale);
+        ctx.translate(-rect.left,-rect.top);    //设置context位置，值为相对于视窗的偏移量负值，让图片复位
+        html2canvas(el, {
+            scale: scale,
+            canvas: canvas,
+            width: w,
+            height: h,
+            logging: false,
+            background: "#f2f2f2",
+            useCORS: true
+        }).then(function (canvas) {
+            var dataUrl = canvas.toDataURL("jpeg");
+            saveImg.src=dataUrl;
         });
 
-    </script>
-</div>
+        $('#back-btn').on('click', function () {
+            window.history.go(-1);
+        })
+    });
+
+</script>
 @endsection
