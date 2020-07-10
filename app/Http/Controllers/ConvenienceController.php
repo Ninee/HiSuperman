@@ -30,7 +30,7 @@ class ConvenienceController extends Controller
     {
         $info = ConvenienceInfo::find($info_id);
         $category = ConvenienceCategory::find($info->convenience_category_id);
-        $qrcode = QrCode::format('png')->margin(1)->size(258)->generate(env('APP_URL') . '/convenience/detail' . $info_id);
+        $qrcode = QrCode::format('png')->margin(1)->size(258)->generate(env('APP_URL') . '/convenience/detail/' . $info_id);
         return view('mobile.convenience.share', ['info' => $info, 'category' => $category, 'qrcode' => base64_encode($qrcode)]);
     }
 
