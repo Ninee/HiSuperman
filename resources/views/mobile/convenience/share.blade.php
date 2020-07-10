@@ -111,7 +111,9 @@
             width: 2.5rem;
         }
         #saveImg {
+            position: absolute;
             margin: 0 5%;
+            top: 5rem;
             width: 90%;
             opacity: 1;
             z-index: 9999;
@@ -185,7 +187,6 @@
             }).then(function (canvas) {
                 var dataUrl = canvas.toDataURL("jpeg");
                 saveImg.src=dataUrl;
-                $('#cBox').hide()
             });
 
             $('#back-btn').on('click', function () {
