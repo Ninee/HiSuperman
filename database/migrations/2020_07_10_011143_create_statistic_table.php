@@ -19,7 +19,7 @@ class CreateStatisticTable extends Migration
             $table->string('target');
             $table->string('event');
             $table->string('data');
-            $table->string('ua');
+            $table->text('ua');
             $table->string('ip');
             $table->timestamps();
         });
