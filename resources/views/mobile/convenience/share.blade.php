@@ -170,7 +170,7 @@
                 <img class="qrcode" src="data:image/png;base64,{!! $qrcode !!}" alt="">
             </div>
         </div>
-        {{--<img id="saveImg" src="" alt="">--}}
+        <img id="saveImg" src="" alt="">
     </div>
 </div>
 <script type="text/javascript">
