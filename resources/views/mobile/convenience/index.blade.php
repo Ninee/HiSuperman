@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>信息列表</title>
+    <title>海外超人-便民信息</title>
     <link rel="stylesheet" href="/h5/css/base.css">
     <link rel="stylesheet" href="/h5/css/weui.css">
     <link rel="stylesheet" href="/h5/css/weuix.css">
@@ -234,7 +234,7 @@
                 </div>
             </div>
             <div class="content copy<%=list[i].id%>">
-                <%=nl2br(list[i].content)%>（联系时请告知超人推荐哦）
+                <%=nl2br(list[i].content)%> <p>（联系时请告知超人推荐哦）</p>
             </div>
             <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files" id="uploaderFiles">
@@ -245,7 +245,7 @@
             </div>
             <div class="tools">
                 <div class="btn copy-btn" data-id="<%=list[i].id%>"><i class="icon icon-97"></i>复制问超人</div>
-                <div class="btn share-btn" data-id="<%=list[i].id%>" onclick="sharePlus(<%=list[i].id%>)"><i class="icon icon-3"></i>分享好友</div>
+            <a class="btn share-btn" data-id="<%=list[i].id%>" href="/convenience/share/<%=list[i].id%>"><i class="icon icon-3"></i>分享好友</a>
             </div>
         </li>
         <% } %>
