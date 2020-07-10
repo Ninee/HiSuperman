@@ -23,7 +23,7 @@ class DragUploader extends Field
     ];
 
     protected static $js = [
-        'vendor/drag-uploader/jQuery.upload.min.js',
+        'vendor/drag-uploader/jQuery.upload.js',
     ];
 
     public function render()

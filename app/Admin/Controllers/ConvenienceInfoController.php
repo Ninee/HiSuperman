@@ -106,8 +106,8 @@ class ConvenienceInfoController extends Controller
             return nl2br($content);
         });
         $grid->pictures('图片')->gallery(['width' => 50]);
-        $grid->copyer('复制次数');
-        $grid->sharer('分享次数');
+        $grid->copyer('复制次数')->sortable();
+        $grid->sharer('分享次数')->sortable();
         $grid->created_at('创建时间');
         $grid->updated_at('最后修改时间');
 

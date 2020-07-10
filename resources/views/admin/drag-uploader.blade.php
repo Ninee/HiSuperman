@@ -5,7 +5,7 @@
 
         @include('admin::form.error')
         <div class="case">
-            <div class="upload" data-name="{{$name}}" action='{{admin_base_path('dragUploader')}}' data-value="{{old($column, $value) ? implode(',', $value) : ''}}" id='{{$id}}'></div>
+            <div class="upload" data-num="20" data-width="750" data-name="{{$name}}" action='{{admin_base_path('dragUploader')}}' data-value="{{old($column, $value) ? implode(',', $value) : ''}}" id='{{$id}}'></div>
         </div>
         {{--<input type="hidden" id="{{$name}}" name="{{$name}}" value="{{json_encode(old($column, $value) ? old($column, $value) : [])}}" />--}}
         @include('admin::form.help-block')
