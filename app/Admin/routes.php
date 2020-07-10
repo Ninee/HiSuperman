@@ -14,4 +14,5 @@ Route::group([
     $router->resource('convenience_info', 'ConvenienceInfoController');
     $router->resource('city', 'CityController');
     $router->get('convenience_posters/{info_id}', 'PosterController@convenienceInfo');
+    $router->post('dragUploader', 'UploadController@dragUploader');
 });

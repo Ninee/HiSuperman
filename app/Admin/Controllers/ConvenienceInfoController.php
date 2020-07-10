@@ -145,8 +145,12 @@ class ConvenienceInfoController extends Controller
         $form->hidden('user_id', '用户')->value(Admin::user()->id);
         $form->select('convenience_category_id', '分类')->options(ConvenienceCategory::all()->pluck('name', 'id'))->required();
         $form->textarea('content', '内容')->required();
-        $form->multipleImage('pictures', '图片')->uniqueName()->help('可选');
+        $form->dragUploader('pictures', '图片');
+//        $form->multipleImage('pictures', '图片');
 
+        $form->saving(function ($form) {
+            $form->pictures = explode(',', $form->pictures);
+        });
         return $form;
     }
 }

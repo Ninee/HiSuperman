@@ -17,5 +17,8 @@
  * Admin::js('/packages/prettydocs/js/main.js');
  *
  */
+use Encore\Admin\Form;
+use App\Admin\Extensions\DragUploader;
 
 Encore\Admin\Form::forget(['map', 'editor']);
+Form::extend('dragUploader', DragUploader::class);

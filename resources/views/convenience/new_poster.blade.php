@@ -57,7 +57,7 @@
         .text {
             border: 1px solid #144482;
             width: 100%;
-            min-height: 400px;
+            min-height: 1000px;
             margin: 20px 0;
             padding: 55px;
             box-sizing: border-box;
@@ -69,7 +69,7 @@
             width: 600px;
             color: #144482;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 36px;
         }
         .footer {
             margin-top: 20px;
