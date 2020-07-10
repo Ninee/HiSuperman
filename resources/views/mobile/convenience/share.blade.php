@@ -40,6 +40,7 @@
             left: 0;
             top: 0;
             width: 100%;
+            z-index: 9999;
         }
         #box {
             /*overflow-y: scroll;*/
@@ -121,7 +122,7 @@
             top: 5.8rem;
             width: 90%;
             opacity: 1;
-            z-index: 9999;
+            z-index: 8888;
         }
 
     </style>
@@ -169,7 +170,7 @@
                 <img class="qrcode" src="data:image/png;base64,{!! $qrcode !!}" alt="">
             </div>
         </div>
-        <img id="saveImg" src="" alt="">
+        {{--<img id="saveImg" src="" alt="">--}}
     </div>
 </div>
 <script type="text/javascript">
@@ -196,7 +197,6 @@
             width: w,
             height: h,
             logging: false,
-            background: "#f2f2f2",
             useCORS: true
         }).then(function (canvas) {
             var dataUrl = canvas.toDataURL("jpeg");
