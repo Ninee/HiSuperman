@@ -5,7 +5,7 @@
 
 @section('js')
     <script src="{{ asset('js/jQuery.js') }}"></script>
-    <script src="http://supercdn.lzhnb.com/html2canvas.min.js"></script>
+    <script src="{{ asset('h5/js/html2canvas.min.js') }}"></script>
 @endsection
 
 @section('style')

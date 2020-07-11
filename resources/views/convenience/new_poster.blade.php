@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <script src="{{ asset('js/jQuery.js') }}"></script>
-    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script src="{{ asset('h5/js/html2canvas.min.js') }}"></script>
     <style>
         * {
             padding: 0;

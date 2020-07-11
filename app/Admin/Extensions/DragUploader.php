@@ -28,11 +28,6 @@ class DragUploader extends Field
 
     public function render()
     {
-        $name = $this->formatName($this->column);
-        $base_url = asset('vendor/webuploader-0.1.5');
-        $server_url = admin_base_path('webUploader');
-        $remove_url = admin_base_path('removeFile');
-        $csrf_token = csrf_token();
         $this->script = <<<EOT
 $("#{$this->id}").upload(
     function(_this,data){
