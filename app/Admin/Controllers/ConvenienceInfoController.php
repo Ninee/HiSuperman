@@ -149,7 +149,9 @@ class ConvenienceInfoController extends Controller
 //        $form->multipleImage('pictures', '图片');
 
         $form->saving(function ($form) {
-            $form->pictures = explode(',', $form->pictures);
+            if ($form->pictures) {
+                $form->pictures = explode(',', $form->pictures);
+            }
         });
         return $form;
     }

@@ -173,6 +173,7 @@
         <img id="saveImg" src="" alt="">
     </div>
 </div>
+<script src="/h5/js/request.js"></script>
 <script type="text/javascript">
     $(function () {
         var box = document.getElementById("box");
@@ -206,6 +207,18 @@
         $('#back-btn').on('click', function () {
             window.history.go(-1);
         })
+
+        //统计分享数据
+        postStatistic({
+            url: location.href,
+            target: 'convenience_feed',
+            event: 'share',
+            data: {
+                id: '{{$info->id}}'
+            }
+        }, function (){
+
+        });
     });
 
 </script>
