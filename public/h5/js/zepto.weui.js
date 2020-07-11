@@ -1422,7 +1422,7 @@ Device/OS Detection
                 p.params.onChange(p, p.value, p.displayValue);
             }
             if (p.input && p.input.length > 0) {
-                $(p.input).val(p.params.formatValue ? p.params.formatValue(p, p.value, p.displayValue) : p.value.join(' '));
+                $(p.input).val(p.params.formatValue ? p.params.formatValue(p, p.value, p.displayValue) : p.value.join(p.params.separator));
                 $(p.input).trigger('change');
             }
         };
@@ -2415,7 +2415,7 @@ Device/OS Detection
                     for (i = 0; i < p.value.length; i++) {
                         inputValue.push(formatDate(p.value[i]));
                     }
-                    inputValue = inputValue.join(', ');
+                    inputValue = inputValue.join(p.params.separator);
                 }
                 $(p.input).val(inputValue);
                 $(p.input).trigger('change');
@@ -3138,6 +3138,7 @@ Device/OS Detection
         weekendDays: [0, 6], // Sunday and Saturday
         multiple: false,
         dateFormat: 'yyyy/mm/dd',
+        separator: ',',  //分隔符
         direction: 'horizontal', // or 'vertical'
         minDate: null,
         maxDate: null,

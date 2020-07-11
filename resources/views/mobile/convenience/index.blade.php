@@ -21,14 +21,12 @@
         })();
     </script>
     <script src="/h5/js/zepto.min.js"></script>
-    <script src="/h5/js/zepto.weui.min.js"></script>
+    <script src="/h5/js/zepto.weui.js"></script>
     <script src="/h5/js/tools.js"></script>
     <script src="/h5/js/iscroll-lite.min.js"></script>
     <script src="/h5/js/clipboard.min.js"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
-        wx.config(<?php echo $app->jssdk->buildConfig(array('updateAppMessageShareData', 'updateTimelineShareData'), false) ?>);
-    </script>
+
     <style>
         .weui-tab-nav .weui-nav-green {
             display: block;
@@ -158,6 +156,12 @@
                     <input data-key="category" class="weui-input" id="category" type="text" value="{{$currentCategory->name}}">
                 </div>
             </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label for="date-multiple" class="weui-label">发布日期</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="date-multiple" type="text" value="">
+                </div>
+            </div>
             <a id="search" href="javascript:;" class="weui-btn bg-blue"><i class="icon icon-4"></i>搜索</a>
         </div>
     </div>
@@ -175,6 +179,7 @@
     <script>
         var city = '{{$currentCity->name}}';
         var category = '{{$currentCategory->name}}';
+
         $("#city").picker({
             title: "请选择您的城市",
             cols: [
@@ -215,6 +220,43 @@
             onChange: function (picker, values, displayValues) {
                 // console.log(values, displayValues);
                 $("#districtId").val(values[2])
+            }
+        });
+        var today = Date.parse(new Date());
+        var dayRange = null;
+        $("#date-multiple").calendar({
+            multiple: true,
+            value: [today],
+            dateFormat: 'yyyy-mm-dd',
+            separator: ' 到 ',
+            onChange: function (p, values, displayValues) {
+                var tmp = displayValues;
+
+                if (displayValues.length > 2) {
+                    //做比较和对比
+                    if (displayValues[2] > displayValues[1]) {
+                        tmp = [displayValues[0], displayValues[2]];
+                    }
+                    if (displayValues[2] < displayValues[0]) {
+                        tmp = [displayValues[2], displayValues[1]];
+                    }
+                    if ( displayValues[0] < displayValues[2] && displayValues[2] < displayValues[1]) {
+                        tmp = [displayValues[0], displayValues[2]];
+                    }
+                    p.value = tmp;
+                    p.updateValue();
+                }
+                if (displayValues.length == 2) {
+                    // console.log(displayValues)
+                    if (displayValues[0] > displayValues[1]) {
+                        var c = displayValues[0];
+                        tmp[0] = displayValues[1];
+                        tmp[1] = c;
+                        p.value = tmp;
+                        p.updateValue();
+                    }
+                }
+                dayRange = tmp;
             }
         });
 
@@ -263,6 +305,7 @@
             var params = $.extend(filter, {
                 city: city,
                 category: category,
+                dayRange: dayRange,
                 page: page
             })
             getList(params, function (res) {

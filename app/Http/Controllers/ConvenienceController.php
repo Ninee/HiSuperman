@@ -13,7 +13,8 @@ class ConvenienceController extends Controller
 {
     public function index($city = 2, $category = 1)
     {
-        $app = \EasyWeChat::officialAccount();
+//        $app = \EasyWeChat::officialAccount();
+        $app = '';
         $cities = City::all()->pluck('name')->toArray();
         $categories = ConvenienceCategory::all()->pluck('name')->toArray();
         return view('mobile.convenience.index', [
