@@ -16,11 +16,12 @@ class ConvenienceController extends Controller
         $admin = AdminUser::where(['name' => $request->city])->first();
         $category = ConvenienceCategory::where(['name' => $request->category])->first();
         $dayRange = $request->input('dayRange', '');
+
         $list = ConvenienceInfo::where(['user_id' => $admin->id, 'convenience_category_id' => $category->id])
             ->when($dayRange, function ($query) use ($dayRange) {
                 if (count($dayRange) == 1) {
                     $date = Carbon::createFromTimestampMs($dayRange[0]);
-                    return $query->whereBetween('created_at', [$date->toDateTimeString(), $date->addDay(1)->toDateTimeString()]);
+                    return $query->whereBetween('created_at', [$date->format('Y-m-d 00:00:00'), $date->addDay(1)->format('Y-m-d 00:00:00')]);
                 }
                 if (count($dayRange) == 2) {
                     return $query->whereBetween('created_at', [Carbon::createFromTimestampMs($dayRange[0])->toDateTimeString(), Carbon::createFromTimestampMs($dayRange[1])->addDay(1)->toDateTimeString()]);
