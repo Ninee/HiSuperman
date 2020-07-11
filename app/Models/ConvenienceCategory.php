@@ -11,4 +11,11 @@ class ConvenienceCategory extends Model
         $this->viewer += 1;
         $this->save();
     }
+
+    public function searcherInc()
+    {
+        $this->searcher += 1;
+        $this->save();
+    }
+
 }

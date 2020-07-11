@@ -366,7 +366,7 @@
 
         function sharePlus(id) {
             share()
-            //统计复制数据
+            //统计分享数据
             postStatistic({
                 url: location.href,
                 target: 'convenience_feed',
@@ -407,6 +407,18 @@
 
             $("#search").click(function () {
                 updateShareInfo()
+                //统计搜索数据
+                postStatistic({
+                    url: location.href,
+                    target: 'convenience',
+                    event: 'search',
+                    data: {
+                        city: city,
+                        category: category
+                    }
+                }, function (){
+
+                });
                 //重置页码
                 reset()
                 ajaxpage()

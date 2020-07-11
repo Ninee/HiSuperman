@@ -21,8 +21,13 @@ class StatisticController extends Controller
         $data['ip'] = $ip;
         Statistic::create($data);
         if ($data['target'] == Statistic::TARGET_CONVENIENCE) {
-            City::where(['name' => $data['data']['city']])->first()->viewerInc();
-            ConvenienceCategory::where(['name' => $data['data']['category']])->first()->viewerInc();
+            if ($data['event'] == 'view') {
+                City::where(['name' => $data['data']['city']])->first()->viewerInc();
+                ConvenienceCategory::where(['name' => $data['data']['category']])->first()->viewerInc();
+            }
+            if ($data['event'] == 'search') {
+                ConvenienceCategory::where(['name' => $data['data']['category']])->first()->searcherInc();
+            }
         }
         if ($data['target'] == Statistic::TARGET_CONVENIENCE_FEED) {
             $feed = ConvenienceInfo::find($data['data']['id']);
