@@ -86,7 +86,7 @@ class ConvenienceCategoryController extends Controller
         $grid->id('Id');
         $grid->name('名称');
         $grid->viewer('浏览量');
-        $grid->searcher('浏览量');
+        $grid->searcher('搜索量');
         $grid->created_at('创建时间');
 
         return $grid;
