@@ -35,7 +35,9 @@
     <script src="/h5/js/iscroll-lite.min.js"></script>
     <script src="/h5/js/clipboard.min.js"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8"></script>
-
+    <script type="text/javascript" charset="utf-8">
+        wx.config(<?php echo $app->jssdk->buildConfig(array('updateAppMessageShareData', 'updateTimelineShareData'), false) ?>);
+    </script>
     <style>
         .weui-tab-nav .weui-nav-green {
             display: block;
