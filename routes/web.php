@@ -10,6 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', function () {
+    return redirect(route('admin.home'));
+});
 Route::group(['prefix' => 'tools'], function () {
     Route::get('/image_generator', function () {
        return view('tools.image_generator');
