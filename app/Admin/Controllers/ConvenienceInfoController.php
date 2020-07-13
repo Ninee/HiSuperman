@@ -83,7 +83,8 @@ class ConvenienceInfoController extends Controller
     {
         $grid = new Grid(new ConvenienceInfo);
 
-        $grid->model()->orderBy('id', 'desc');
+        $grid->model()->where(['user_id' => Admin::user()->id])->orderBy('id', 'desc');
+        $grid->expandFilter();
         $grid->filter(function($filter){
 
             // 去掉默认的id过滤器
