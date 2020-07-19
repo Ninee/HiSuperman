@@ -146,7 +146,7 @@
                     {{--href="javascript:" class="weui-navbar__item weui-nav-green"> 卖场 </a> </div>--}}
         {{--</div>--}}
     {{--</div>--}}
-    <a href="https://q.lzhnb.com"><img width="100%" src="http://supercdn.lzhnb.com/hwcr-banner.png" alt=""></a>
+    <a href="https://q.lzhnb.com"><img width="100%" src="http://supercdn.lzhnb.com/banner2.png" alt=""></a>
     <div class="weui-gallery" style="display: none">
         <span class="weui-gallery__img"></span>
         <div class="weui-gallery__opr">
