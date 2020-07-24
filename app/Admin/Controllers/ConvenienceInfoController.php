@@ -95,6 +95,8 @@ class ConvenienceInfoController extends Controller
             // 在这里添加字段过滤器
             $filter->equal('convenience_category_id', '分类')->select(ConvenienceCategory::all()->pluck('name', 'id'));
             $filter->date('created_at', '创建时间');
+
+            $filter->like('content', '内容(含有)');
         });
         $grid->actions(function ($actions) {
 //            $actions->disableDelete();
