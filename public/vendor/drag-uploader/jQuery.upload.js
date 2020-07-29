@@ -305,10 +305,10 @@
                         var anh = document.createAttribute("height");
                         anh.nodeValue = h;
                         canvas.setAttributeNode(anw);
-                        canvas.setAttributeNode(anh); 
+                        canvas.setAttributeNode(anh);
                         ctx.drawImage(that, 0, 0, w, h);
                         // quality值越小，所绘制出的图像越模糊
-                        var base64 = canvas.toDataURL('image/png', quality );
+                        var base64 = canvas.toDataURL('image/jpeg', quality );
                         html.css("background-image","url('"+base64+"')").append(loading);
 
                         //开始上传
