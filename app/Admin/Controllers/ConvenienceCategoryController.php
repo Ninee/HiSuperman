@@ -120,6 +120,7 @@ class ConvenienceCategoryController extends Controller
 
         $form->text('name', '分类名称')->required();
 
+
         return $form;
     }
 }

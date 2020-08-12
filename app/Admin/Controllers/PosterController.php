@@ -11,6 +11,8 @@
 namespace App\Admin\Controllers;
 
 
+use App\AdminUser;
+use App\Models\City;
 use App\Models\ConvenienceCategory;
 use App\Models\ConvenienceInfo;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -21,8 +23,10 @@ class PosterController
     public function convenienceInfo($info_id)
     {
         $info = ConvenienceInfo::find($info_id);
+        $adminUser = AdminUser::find($info->user->id);
+        $city = City::where('name', $adminUser->name)->first();
         $category = ConvenienceCategory::find($info->convenience_category_id);
         $qrcode = QrCode::format('png')->margin(1)->size(258)->generate(env('APP_URL') . '/convenience/' . $info->user_id . '/' . $category->id);
-        return view('convenience.new_poster', ['info' => $info, 'category' => $category, 'qrcode' => base64_encode($qrcode)]);
+        return view('convenience.new_poster', ['info' => $info, 'city' => $city, 'category' => $category, 'qrcode' => base64_encode($qrcode)]);
     }
 }

@@ -123,13 +123,16 @@
         @endif
         <div class="thin-line"></div>
         <div class="wide-line"></div>
+        @if($city->is_qrcode == 1)
         <div class="footer">
             <div class="tips">
                 长按扫码<br>
                 获取更多{{$category->name}}资讯
             </div>
+
             <img class="qrcode" src="data:image/png;base64,{!! $qrcode !!}" alt="">
         </div>
+        @endif
     </div>
     <img id="saveImg" alt="">
 </div>

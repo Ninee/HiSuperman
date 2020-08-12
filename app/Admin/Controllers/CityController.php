@@ -120,6 +120,10 @@ class CityController extends Controller
         $form = new Form(new City);
 
         $form->text('name', '名称')->required();
+        $form->radio('is_qrcode', '是否附带二维码')->options([
+            1 => '是',
+            0 => '否'
+        ])->default(1);
 
         return $form;
     }

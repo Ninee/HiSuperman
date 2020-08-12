@@ -14,7 +14,7 @@ class ConvenienceController extends Controller
     public function index($city = 2, $category = 1)
     {
         $app = \EasyWeChat::officialAccount();
-        $cities = City::all()->pluck('name')->toArray();
+        $cities = City::where(['is_qrcode' => 1])->pluck('name')->toArray();
         $categories = ConvenienceCategory::all()->pluck('name')->toArray();
         return view('mobile.convenience.index', [
             'app' => $app,
