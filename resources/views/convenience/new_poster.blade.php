@@ -4,6 +4,7 @@
     <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
     <script src="{{ asset('js/jQuery.js') }}"></script>
     <script src="{{ asset('h5/js/html2canvas.min.js') }}"></script>
     <style>
@@ -138,32 +139,49 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        var box = document.getElementById("box");
-        var el = document.getElementById("cBox");
-        var saveImg = document.getElementById("saveImg");
-        var canvas = document.createElement("canvas");
-        var scale = window.devicePixelRatio;
-        var ctx=canvas.getContext("2d");
-        var rect = el.getBoundingClientRect();  //获取元素相对于视察的偏移量
-        var w = el.offsetWidth;
-        var h = el.offsetHeight;
-        canvas.width = w * scale;
-        canvas.height = h * scale;
-        canvas.style.width = w ;
-        canvas.style.height = h ;
-        ctx.scale(scale, scale);
-        ctx.translate(-rect.left,-rect.top);    //设置context位置，值为相对于视窗的偏移量负值，让图片复位
-        html2canvas(el, {
-            scale: scale,
-            canvas: canvas,
-            width: w,
-            height: h,
-            logging: false,
-            background: "#f2f2f2",
-            useCORS: true
-        }).then(function (canvas) {
-            var dataUrl = canvas.toDataURL("jpeg");
-            saveImg.src=dataUrl;
+        var imgdefereds=[];
+        $('img').each(function(){
+            var dfd=$.Deferred();
+            $(this).bind('load',function(){
+                dfd.resolve();
+            }).bind('error',function(){
+                //图片加载错误，加入错误处理
+                // dfd.resolve();
+            })
+            if(this.complete) setTimeout(function(){
+                dfd.resolve();
+            },1000);
+            imgdefereds.push(dfd);
+        })
+        $.when.apply(null,imgdefereds).done(function(){
+            console.log('all images load compeleted');
+            var box = document.getElementById("box");
+            var el = document.getElementById("cBox");
+            var saveImg = document.getElementById("saveImg");
+            var canvas = document.createElement("canvas");
+            var scale = window.devicePixelRatio;
+            var ctx=canvas.getContext("2d");
+            var rect = el.getBoundingClientRect();  //获取元素相对于视察的偏移量
+            var w = el.offsetWidth;
+            var h = el.offsetHeight;
+            canvas.width = w * scale;
+            canvas.height = h * scale;
+            canvas.style.width = w ;
+            canvas.style.height = h ;
+            ctx.scale(scale, scale);
+            ctx.translate(-rect.left,-rect.top);    //设置context位置，值为相对于视窗的偏移量负值，让图片复位
+            html2canvas(el, {
+                scale: scale,
+                canvas: canvas,
+                width: w,
+                height: h,
+                logging: false,
+                background: "#f2f2f2",
+                useCORS: true
+            }).then(function (canvas) {
+                var dataUrl = canvas.toDataURL("jpeg");
+                saveImg.src=dataUrl;
+            });
         });
     });
 
