@@ -6,6 +6,7 @@ use App\AdminUser;
 use App\Models\City;
 use App\Models\ConvenienceCategory;
 use App\Models\ConvenienceInfo;
+use Encore\Admin\Facades\Admin;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -13,14 +14,17 @@ class ConvenienceController extends Controller
 {
     public function index($city = 2, $category = 1)
     {
-        $app = \EasyWeChat::officialAccount();
+//        $app = \EasyWeChat::officialAccount();
         $cities = City::where(['is_qrcode' => 1])->pluck('name')->toArray();
+        $adminUser = AdminUser::find($city);
         $categories = ConvenienceCategory::all()->pluck('name')->toArray();
+        $tops = ConvenienceInfo::where(['user_id' => $adminUser->id])->where('is_top', 1)->orderBy('id', 'desc')->get();
         return view('mobile.convenience.index', [
-            'app' => $app,
+//            'app' => $app,
+            'tops' => $tops,
             'cities' => json_encode($cities),
             'categories' => json_encode($categories),
-            'currentCity' => AdminUser::find($city),  //以站点运营管理员作为城市id
+            'currentCity' => $adminUser,  //以站点运营管理员作为城市id
             'currentCategory' => ConvenienceCategory::find($category)
         ]);
     }

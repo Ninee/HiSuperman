@@ -12,6 +12,7 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('convenience_categories', 'ConvenienceCategoryController');
     $router->resource('convenience_info', 'ConvenienceInfoController');
+    $router->resource('top', 'TopController');
     $router->resource('city', 'CityController');
     $router->get('convenience_posters/{info_id}', 'PosterController@convenienceInfo');
     $router->post('dragUploader', 'UploadController@dragUploader');

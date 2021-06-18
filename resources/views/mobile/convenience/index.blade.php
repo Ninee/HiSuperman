@@ -35,9 +35,7 @@
     <script src="/h5/js/iscroll-lite.min.js"></script>
     <script src="/h5/js/clipboard.min.js"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
-        wx.config(<?php echo $app->jssdk->buildConfig(array('updateAppMessageShareData', 'updateTimelineShareData'), false) ?>);
-    </script>
+
     <style>
         .weui-tab-nav .weui-nav-green {
             display: block;
@@ -98,6 +96,7 @@
             background: #ffffff;
         }
         .list-item .header {
+            position: relative;
             box-sizing: border-box;
             display: flex;
             justify-content: flex-start;
@@ -180,6 +179,33 @@
     <div class="page-bd">
         <div class="weui-cells__title">信息列表</div>
         <ul class="list" id="factory-list">
+            @foreach($tops as $top)
+            <li class="list-item">
+                <div class="header">
+                    <div class="weui-avatar-circle">
+                        <img src="/images/logo.png">
+                        <span class="weui-icon-success weui-icon-safe-warn"></span>
+                    </div>
+                    <div class="desc">
+                        <p class="name">{{$top->user->name}}站</p>
+                        <p class="time">{{$top->created_at}}</p>
+                    </div>
+                    <div style="color: red;position: absolute;right: 10px;top: 0;">
+                        <span class="icon icon-7">置顶</span>
+                    </div>
+                </div>
+                <div class="content copy22">
+                    {{$top->content}}
+                </div>
+                <div class="weui-uploader__bd">
+                    <ul class="weui-uploader__files" id="uploaderFiles">
+                        @foreach($top->pictures as $picture)
+                            <li class="weui-uploader__file" data-url="{{$picture}}" style="background-image:url({{$picture}});"></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </li>
+            @endforeach
             <!--插入列表-->
         </ul>
         <div class="weui-loadmore" id="more">
@@ -293,7 +319,7 @@
             <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files" id="uploaderFiles">
                     <% for(var j in list[i].pictures) {   %>
-                    <li class="weui-uploader__file" data-url="<%=list[i].pictures[j]%>" style="background-image:url('<%=list[i].pictures[j]%>-thumb')"></li>
+                    <li class="weui-uploader__file" data-url="<%=list[i].pictures[j]%>" style="background-image:url('<%=list[i].pictures[j]%>')"></li>
                     <% } %>                 
                 </ul>
             </div>
