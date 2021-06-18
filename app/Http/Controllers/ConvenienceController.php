@@ -14,13 +14,13 @@ class ConvenienceController extends Controller
 {
     public function index($city = 2, $category = 1)
     {
-//        $app = \EasyWeChat::officialAccount();
+        $app = \EasyWeChat::officialAccount();
         $cities = City::where(['is_qrcode' => 1])->pluck('name')->toArray();
         $adminUser = AdminUser::find($city);
         $categories = ConvenienceCategory::all()->pluck('name')->toArray();
         $tops = ConvenienceInfo::where(['user_id' => $adminUser->id])->where('is_top', 1)->orderBy('id', 'desc')->get();
         return view('mobile.convenience.index', [
-//            'app' => $app,
+            'app' => $app,
             'tops' => $tops,
             'cities' => json_encode($cities),
             'categories' => json_encode($categories),
