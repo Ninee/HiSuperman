@@ -201,9 +201,11 @@
                 </div>
                 <div class="weui-uploader__bd">
                     <ul class="weui-uploader__files" id="uploaderFiles">
-                        @foreach($top->pictures as $picture)
-                            <li class="weui-uploader__file" data-url="{{$picture}}" style="background-image:url({{$picture}});"></li>
-                        @endforeach
+                        @if($top->pictures)
+                            @foreach($top->pictures as $picture)
+                                <li class="weui-uploader__file" data-url="{{$picture}}" style="background-image:url({{$picture}});"></li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
             </li>
